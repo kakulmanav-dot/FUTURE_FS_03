@@ -11,7 +11,7 @@ const ShopContextProvider = (props) =>{
     const currency = "$"
     const delivery_fee = 10;
     let [cartItem , setCartItems] = useState({});
-    const backendURL = import.meta.env.VITE_BACKEND_URL;
+    const backendURL = "https://future-fs-03-six-rho.vercel.app";
     const [products,setProducts] = useState([]);
     const [token,settoken] = useState("");
     const navigate = useNavigate();
