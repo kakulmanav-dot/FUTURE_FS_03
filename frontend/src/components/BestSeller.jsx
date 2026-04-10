@@ -12,9 +12,13 @@ function BestSeller() {
     },[products])
   return (
     <div>
-      <div className='flex items-center justify-center flex-col'>
+      <div className="flex items-center justify-center flex-col">
         <Title text1={"BEST"} text2={"SELLERS"} />
-        <p className='text-gray-500'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure architecto beatae excepturi vel, blanditiis numquam.</p>
+        <p className="text-gray-500">
+          Our bestsellers speak for themselves — timeless cuts, everyday
+          comfort, and styles that just work. These are the pieces our customers
+          keep coming back for.
+        </p>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5 mt-6">
         {bestSeller.map((item, index) => (
