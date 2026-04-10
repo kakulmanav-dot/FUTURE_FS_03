@@ -60,7 +60,7 @@ function List({token}) {
               className="grid grid-cols-[1fr_3fr_1fr] md:grid-cols-[1fr_3fr_1fr_1fr_1fr] h-24 text-center py-2 items-center border border-gray-300"
             >
               <p className='flex items-center justify-center'>
-                <img src={item.image[0]} alt="" srcset="" className='w-18 '/>
+                <img src={item.image[0]} alt=""  className='w-18 '/>
               </p>
               <p>{item.name}</p>
               <p>{item.category}</p>

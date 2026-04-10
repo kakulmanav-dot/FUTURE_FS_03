@@ -5,7 +5,8 @@ import { assets } from '../assets/assets';
 import { useState } from 'react'
 import { ShopContext } from '../context/ShopContext';
 import { useNavigate } from 'react-router-dom';
-
+import { toast } from 'react-toastify';
+import axios from 'axios';
 
 function PlaceOrders() {
 
@@ -27,7 +28,7 @@ useEffect(()=>{
     phone: "",
 
   })
-  console.log("place order loading")
+  
   const onChangeHandler = (e) => {
     let name = e.target.name;
     let value = e.target.value;
@@ -35,9 +36,9 @@ useEffect(()=>{
     setFormData(prev => ({...prev , [name]: value}))
   
   }
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async(e) => {
        e.preventDefault();
-       console.log("FORM SUBMITTED");
+       
       try {
           let orderItems = [];
           if(!cartItem){
@@ -58,10 +59,39 @@ useEffect(()=>{
                }
              }
             
-          console.log(orderItems);
-           
-          // navigate("/orders");
-       }
+         let orderData = {
+          address: formData,
+          items: orderItems,
+          amount: getCartAmount() + delivery_fee
+         }
+         switch(method){
+          //Api calls for Cod
+          case 'cod':
+          {  const response = await axios.post(backendURL + "/api/order/place" , orderData , {headers:{token}});
+            if(response.data.success === true){
+              toast.success(response.data.message);
+              setCartItems({});
+               navigate("/orders");
+            }else{
+              toast.error(response.data.message);
+            }
+            break;}
+          case 'stripe':
+           { const responseStripe = await axios.post(backendURL + "/api/order/stripe" , orderData , {headers:{token}});  
+            if(responseStripe.data.success){
+              const {session_url} = responseStripe.data;
+              window.location.replace(session_url);
+          }else
+          {
+            toast.error(responseStripe.data.message);
+          }
+          break;
+        }
+          default:
+          break;
+          
+         }
+        }
        
         catch (error) {
         console.log(error);
@@ -179,7 +209,7 @@ useEffect(()=>{
               onClick={() => {
                 setMethod("stripe");
               }}
-              className="border py-2  px-5 flex items-center gap-3"
+              className="border py-2  px-12 flex items-center gap-3"
             >
               <p
                 className={`border h-3 w-3 rounded-full ${method === "stripe" ? "bg-green-600" : ""}`}
@@ -188,19 +218,7 @@ useEffect(()=>{
                 <img src={assets.stripe_logo} className=" h-4" alt="" />
               </p>
             </div>
-            <div
-              onClick={() => {
-                setMethod("razorpay");
-              }}
-              className="border py-2 px-3 flex items-center gap-3"
-            >
-              <p
-                className={`border h-3 w-3  rounded-full ${method === "razorpay" ? "bg-green-600" : ""}`}
-              ></p>
-              <p>
-                <img src={assets.razorpay_logo} className=" h-4" alt="" />
-              </p>
-            </div>
+           
             <div
               onClick={() => {
                 setMethod("cod");

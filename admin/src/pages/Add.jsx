@@ -236,6 +236,21 @@ function Add({token}) {
             <div
               onClick={() => {
                 setsizes((prev) =>
+                  prev.includes("M")
+                    ? prev.filter((item) => item !== "M")
+                    : [...prev, "M"],
+                );
+              }}
+            >
+              <p
+                className={`${sizes.includes("M") ? "bg-pink-100" : "bg-slate-300"} px-2 py-1 w-10 text-center`}
+              >
+                M
+              </p>
+            </div>{" "}
+            <div
+              onClick={() => {
+                setsizes((prev) =>
                   prev.includes("L")
                     ? prev.filter((item) => item !== "L")
                     : [...prev, "L"],
