@@ -10,10 +10,11 @@ function Footer() {
             <img src={assets.logo} className="w-25 h-12" alt="" />
           </div>
           <p className="text-gray-600 mr-10 text-sm mt-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum
-            accusantium accusamus possimus exercitationem ipsam neque eaque
-            laboriosam. Ipsum, eos. Accusamus nisi architecto placeat commodi
-            quia eveniet perferendis vitae. Dolor, autem.
+            Forever is your go-to destination for effortless style and everyday
+            fashion. We believe great clothing shouldn't be complicated — just
+            good fits, quality fabric, and looks that last. Every piece in our
+            collection is picked with care, so you always leave feeling
+            confident. Wear it your way — that's the Forever way.
           </p>
         </div>
         <div>
@@ -37,7 +38,9 @@ function Footer() {
       </div>
       <div>
         <hr />
-        <p className='font-semibold text-center '>Copyright 2024 Forever.com - All Rights Reserved</p>
+        <p className="font-semibold text-center ">
+          Copyright 2024 Forever.com - All Rights Reserved
+        </p>
       </div>
     </div>
   );
