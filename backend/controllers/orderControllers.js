@@ -43,7 +43,7 @@ const placeOrderStripe = async(req,res) =>{
           });
         }
      
-        const origin = req.headers.origin || "http://localhost:5173";
+        const origin = req.headers.origin ;
         const orderData = {
           userId,
           address,
